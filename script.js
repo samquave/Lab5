@@ -1,5 +1,6 @@
 var sentences = ['ten ate neite ate nee enet ite ate inet ent eate', 'Too ato too nOt enot one totA not anot tOO aNot', 'oat itain oat tain nate eate tea anne inant nean', 'itant eate anot eat nato inate eat anot tain eat', 'nee ene ate ite tent tiet ent ine ene ete ene ate'];
-
+var correct = 0;
+var wrong = 0;
 
 $(document).ready(function() {
     $("#keyboard-upper-container").hide();
@@ -40,25 +41,31 @@ $(document).ready(function() {
     })
      var i = 0;
      var charposition = 0;
+
     
     $("#sentence").append(sentences[i]);
    
     $("body").keypress(function(event){
         var keypressed = event.keyCode;
         var targetchar = sentences[i].charCodeAt(charposition);
+
         
         if(keypressed===targetchar) {
             $("#feedback").append('<span class="glyphicon glyphicon-ok"></span>');
-            charposition++;   
+            charposition++;
+            correct++;   
             $('#yellow-block').animate({left: '+=.73em'}, 50);
+           
                 
           
 
         } else {
         
-            
+            wrong++;
             $("#feedback").append('<span class="glyphicon glyphicon-remove"></span>');
         }
+       
+        
     })
 
     $('body').keypress(function(event) {
@@ -84,12 +91,30 @@ $(document).ready(function() {
                 top: '1px',
                 left: '15px',
             }, 0);
- 
+    })
+    $('body').keypress(function(event) {
+        var keypressed = event.keyCode;
+        var targetchar = sentences[i].charCodeAt(charposition);
+        var feedback = document.getElementById("feedback");
+        if(charposition===0)
+            // while(feedback.hasChildNodes){
+            //     feedback.removeChild(feedback.childNodes);
+            feedback.innerHTML = "";
+            })
+
+    
+     $('body').keypress(function(event){
+         var keypressed = event.keyCode;
+         var targetchar = sentences[i].charCodeAt(charposition);
+         if('#sentence'===undefined)
+            alert("Correct: " + correct + "Wrong: " + wrong);
+     })   
+
     })
     
    
 
-})
+
     
     
     
